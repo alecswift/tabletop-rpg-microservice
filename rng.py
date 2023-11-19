@@ -10,10 +10,10 @@ def main():
         with open("rng-input.txt", "r", encoding = "utf-8") as in_file:
              file_data = in_file.read()
         
-        ranges = parse(file_data)
-
-        if not ranges:
+        if not file_data:
             continue
+
+        ranges = parse(file_data)
         
         random_numbers = rng(ranges)
 
@@ -32,11 +32,11 @@ def parse(input_data: str) -> list[tuple[int, int]]:
     for line in input_data.split("\n"):
         str_nums = line.split(" ")
         try:
-            range = int(str_nums[0]), int(str_nums[1])
-        except TypeError:
-            print("Input data is not numeric")
+            num_range = int(str_nums[0]), int(str_nums[1])
+        except:
+            raise Exception("Input data is not in the correct format")
         
-        ranges.append(range)
+        ranges.append(num_range)
     
     return ranges
 
