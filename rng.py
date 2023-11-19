@@ -17,9 +17,12 @@ def main():
         
         random_numbers = rng(ranges)
 
-        with open("prng-service.txt", "w", encoding = "utf-8") as out_file:
+        with open("rng-output.txt", "w", encoding = "utf-8") as out_file:
             for num in random_numbers:
-                out_file.write(num)
+                out_file.write(f"{num}\n")
+            
+        open('rng-input.txt', "w").close()
+
 
 
 def parse(input_data: str) -> list[tuple[int, int]]:
