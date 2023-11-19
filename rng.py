@@ -10,15 +10,36 @@ def main():
         with open("rng-input.txt", "r", encoding = "utf-8") as in_file:
              file_data = in_file.read()
         
-        ranges = []
+        ranges = parse(file_data)
 
-        for line in file_data.split("\n"):
-            str_nums = line.split(" ")
-            try:
-                start, end = int(str_nums[0]), int(str_nums[1])
-            except:
+        if not ranges:
+            continue
+        
+        random_numbers = rng(ranges)
 
-        ranges = [(line.split(" ")) for line in file_data.split("\n")]
+        with open("prng-service.txt", "w", encoding = "utf-8") as out_file:
+            for num in random_numbers:
+                out_file.write(num)
+
+
+def parse(input_data: str) -> list[tuple[int, int]]:
+    """
+    Recieves input data in the form of a string and returns a list
+    of ranges
+    """
+    ranges = []
+
+    for line in input_data.split("\n"):
+        str_nums = line.split(" ")
+        try:
+            range = int(str_nums[0]), int(str_nums[1])
+        except TypeError:
+            print("Input data is not numeric")
+        
+        ranges.append(range)
+    
+    return ranges
+
 
 def rng(ranges: list[tuple[int, int]]) -> list[int]:
     """Returns a list of random numbers from the given list of inclusive ranges"""
@@ -29,3 +50,4 @@ def rng(ranges: list[tuple[int, int]]) -> list[int]:
         random_numbers.append(random_number)
 
     return random_numbers
+
