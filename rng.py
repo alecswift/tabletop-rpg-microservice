@@ -51,3 +51,5 @@ def rng(ranges: list[tuple[int, int]]) -> list[int]:
 
     return random_numbers
 
+if __name__ == "__main__":
+    main()
