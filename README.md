@@ -10,6 +10,6 @@ Once the microservice has recieved the data, microservice will perform the neces
 
 ## UML Sequence Diagram
 
-
+![](uml-sequence-diagram.jpg)
 
 
